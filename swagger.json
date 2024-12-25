@@ -1,0 +1,45 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Advanced URL Shortener API",
+      "description": "API documentation for the URL Shortener project."
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "paths": {
+      "/shorten": {
+        "post": {
+          "summary": "Create a short URL",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "longUrl": { "type": "string" },
+                  "customAlias": { "type": "string" }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": { "description": "URL created" },
+            "400": { "description": "Bad Request" }
+          }
+        }
+      },
+      "/:shortUrl": {
+        "get": {
+          "summary": "Redirect to the original URL",
+          "responses": {
+            "302": { "description": "Redirect" },
+            "404": { "description": "Not Found" }
+          }
+        }
+      }
+    }
+  }
+  
